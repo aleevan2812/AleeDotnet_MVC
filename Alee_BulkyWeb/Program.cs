@@ -28,3 +28,7 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+
+// update-database
+// add-migration AddCategoryTableToDb

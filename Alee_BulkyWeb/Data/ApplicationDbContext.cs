@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Alee_BulkyWeb.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Alee_BulkyWeb.Data
 {
@@ -8,5 +9,8 @@ namespace Alee_BulkyWeb.Data
         {
             
         }
+
+        public DbSet<Category> Categories { get; set; }
+
     }
 }
