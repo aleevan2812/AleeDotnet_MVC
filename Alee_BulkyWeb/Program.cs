@@ -29,6 +29,5 @@ app.MapControllerRoute(
 
 app.Run();
 
-
 // update-database
 // add-migration AddCategoryTableToDb
