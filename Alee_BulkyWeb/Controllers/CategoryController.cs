@@ -44,7 +44,7 @@ namespace Alee_BulkyWeb.Controllers
         {
             if (id == null || id == 0)
                 return NotFound();
-            Category categoryFromDb = _db.Categories.Find(id);
+            Category? categoryFromDb = _db.Categories.Find(id);
             if (categoryFromDb == null)
                 return NotFound();
             return View(categoryFromDb);
@@ -66,7 +66,7 @@ namespace Alee_BulkyWeb.Controllers
         {
             if (id == null || id == 0)
                 return NotFound();
-            Category categoryFromDb = _db.Categories.Find(id);
+            Category? categoryFromDb = _db.Categories.Find(id);
             if (categoryFromDb == null)
                 return NotFound();
             return View(categoryFromDb);
@@ -81,8 +81,6 @@ namespace Alee_BulkyWeb.Controllers
             _db.Remove(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
-
         }
-
     }
 }
