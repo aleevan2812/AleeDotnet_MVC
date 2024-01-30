@@ -31,7 +31,7 @@ namespace AleeWebRazor_Temp.Pages.Categories
                 _db.Categories.Update(Category);
                 _db.SaveChanges();
 
-                //TempData["success"] = "Category updated succesfully!";
+                TempData["success"] = "Category updated succesfully!";
                 return RedirectToPage("Index");
             }
             return Page();
