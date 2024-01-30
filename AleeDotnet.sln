@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alee_BulkyWeb", "Alee_BulkyWeb\Alee_BulkyWeb.csproj", "{8A4EE95F-F391-41A0-B0C3-B8A852DD73F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AleeWebRazor_Temp", "AleeWebRazor_Temp\AleeWebRazor_Temp.csproj", "{A7290415-C424-40A9-AD27-8946A7375F39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AleeWebRazor_Temp", "AleeWebRazor_Temp\AleeWebRazor_Temp.csproj", "{A7290415-C424-40A9-AD27-8946A7375F39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
