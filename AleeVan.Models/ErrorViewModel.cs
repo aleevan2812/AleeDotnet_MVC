@@ -1,4 +1,4 @@
-namespace Alee_BulkyWeb.Models
+namespace AleeVan.Models
 {
     public class ErrorViewModel
     {

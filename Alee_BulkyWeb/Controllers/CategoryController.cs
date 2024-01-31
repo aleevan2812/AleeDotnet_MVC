@@ -1,5 +1,5 @@
-﻿using Alee_BulkyWeb.Data;
-using Alee_BulkyWeb.Models;
+﻿using AleeVan.DataAccess.Data;
+using AleeVan.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Alee_BulkyWeb.Controllers

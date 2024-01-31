@@ -1,7 +1,7 @@
-﻿using Alee_BulkyWeb.Models;
+﻿using AleeVan.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Alee_BulkyWeb.Data
+namespace AleeVan.DataAccess.Data
 {
     public class ApplicationDbContext : DbContext
     {

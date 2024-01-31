@@ -1,4 +1,4 @@
-using Alee_BulkyWeb.Data;
+using AleeVan.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Alee_BulkyWeb.Migrations
+namespace AleeVan.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class AddCategoryTableToDb : Migration
