@@ -1,8 +1,9 @@
 ﻿using AleeVan.DataAccess.Data;
+using AleeVan.DataAccess.Respository.IRespository;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace AleeVan.DataAccess.Respository.IRespository
+namespace AleeVan.DataAccess.Respository
 {
     public class Repository<T> : IRespository<T> where T : class
     {
@@ -12,7 +13,7 @@ namespace AleeVan.DataAccess.Respository.IRespository
         public Repository(ApplicationDbContext db)
         {
             _db = db;
-            this.dbSet = _db.Set<T>();
+            dbSet = _db.Set<T>();
             // _db.Categories == dbSet
         }
 
