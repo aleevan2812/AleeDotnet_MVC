@@ -18,7 +18,7 @@ namespace AleeVan.DataAccess.Data
                 new Category() { Id = 2, Name = "SciFi", DisplayOrder = 2 },
                 new Category() { Id = 3, Name = "History", DisplayOrder = 3 }
 
-                );
+          );
         }
     }
 }
