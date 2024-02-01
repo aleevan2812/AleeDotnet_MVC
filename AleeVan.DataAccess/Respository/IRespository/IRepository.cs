@@ -2,7 +2,7 @@
 
 namespace AleeVan.DataAccess.Respository.IRespository
 {
-    internal interface IRespository<T> where T : class
+    public interface IRespository<T> where T : class
     {
         // T - Category
         IEnumerable<T> GetAll();
