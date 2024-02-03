@@ -1,9 +1,9 @@
-﻿using AleeVan.DataAccess.Data;
-using AleeVan.DataAccess.Respository.IRespository;
+﻿using AleeBook.DataAccess.Data;
+using AleeBook.DataAccess.Respository.IRespository;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace AleeVan.DataAccess.Respository
+namespace AleeBook.DataAccess.Respository
 {
     public class Repository<T> : IRespository<T> where T : class
     {

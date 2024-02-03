@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace AleeVan.DataAccess.Respository.IRespository
+namespace AleeBook.DataAccess.Respository.IRespository
 {
     public interface IRespository<T> where T : class
     {

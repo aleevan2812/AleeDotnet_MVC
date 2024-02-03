@@ -1,8 +1,8 @@
-﻿using AleeVan.DataAccess.Data;
-using AleeVan.DataAccess.Respository.IRespository;
-using AleeVan.Models;
+﻿using AleeBook.DataAccess.Data;
+using AleeBook.DataAccess.Respository.IRespository;
+using AleeBook.Models;
 
-namespace AleeVan.DataAccess.Respository
+namespace AleeBook.DataAccess.Respository
 {
     public class CategoryRepository : Repository<Category>, ICategoryRepository
     {

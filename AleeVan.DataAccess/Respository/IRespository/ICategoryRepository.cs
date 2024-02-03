@@ -1,6 +1,6 @@
-﻿using AleeVan.Models;
+﻿using AleeBook.Models;
 
-namespace AleeVan.DataAccess.Respository.IRespository
+namespace AleeBook.DataAccess.Respository.IRespository
 {
     public interface ICategoryRepository : IRespository<Category>
     {

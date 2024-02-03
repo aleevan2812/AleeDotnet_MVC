@@ -1,4 +1,4 @@
-namespace AleeVan.Models
+namespace AleeBook.Models
 {
     public class ErrorViewModel
     {

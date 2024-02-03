@@ -1,7 +1,7 @@
-﻿using AleeVan.Models;
+﻿using AleeBook.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace AleeVan.DataAccess.Data
+namespace AleeBook.DataAccess.Data
 {
     public class ApplicationDbContext : DbContext
     {

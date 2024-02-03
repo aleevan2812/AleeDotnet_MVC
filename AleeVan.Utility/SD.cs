@@ -1,4 +1,4 @@
-﻿namespace AleeVan.Utility
+﻿namespace AleeBook.Utility
 {
     public static class SD
     {

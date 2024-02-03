@@ -1,8 +1,8 @@
-﻿using AleeVan.DataAccess.Respository.IRespository;
-using AleeVan.Models;
+﻿using AleeBook.DataAccess.Respository.IRespository;
+using AleeBook.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Alee_BulkyWeb.Controllers
+namespace AleeBookWeb.Controllers
 {
     public class CategoryController : Controller
     {

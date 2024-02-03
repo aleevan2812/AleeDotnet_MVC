@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alee_BulkyWeb", "Alee_BulkyWeb\Alee_BulkyWeb.csproj", "{8A4EE95F-F391-41A0-B0C3-B8A852DD73F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AleeBookWeb", "Alee_BulkyWeb\AleeBookWeb.csproj", "{8A4EE95F-F391-41A0-B0C3-B8A852DD73F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AleeVan.DataAccess", "AleeVan.DataAccess\AleeVan.DataAccess.csproj", "{EEC2D37A-66B8-4991-BBE7-9A1BC55431FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AleeBook.DataAccess", "AleeVan.DataAccess\AleeBook.DataAccess.csproj", "{EEC2D37A-66B8-4991-BBE7-9A1BC55431FA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5259C1C0-2F62-4153-BDF2-DE2EFD3B027E} = {5259C1C0-2F62-4153-BDF2-DE2EFD3B027E}
+		{D8629E07-E422-4DB9-B955-46D3902F2093} = {D8629E07-E422-4DB9-B955-46D3902F2093}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AleeVan.Models", "AleeVan.Models\AleeVan.Models.csproj", "{D8629E07-E422-4DB9-B955-46D3902F2093}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AleeBook.Models", "AleeVan.Models\AleeBook.Models.csproj", "{D8629E07-E422-4DB9-B955-46D3902F2093}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AleeVan.Utility", "AleeVan.Utility\AleeVan.Utility.csproj", "{5259C1C0-2F62-4153-BDF2-DE2EFD3B027E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AleeBook.Utility", "AleeVan.Utility\AleeBook.Utility.csproj", "{5259C1C0-2F62-4153-BDF2-DE2EFD3B027E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

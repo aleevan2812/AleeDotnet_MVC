@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace AleeVan.Models
+namespace AleeBook.Models
 {
     public class Category
     {

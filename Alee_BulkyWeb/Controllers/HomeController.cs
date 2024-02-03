@@ -1,8 +1,8 @@
-using AleeVan.Models;
+using AleeBook.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace Alee_BulkyWeb.Controllers
+namespace AleeBookWeb.Controllers
 {
     public class HomeController : Controller
     {
