@@ -1,4 +1,4 @@
-﻿using AleeVan.DataAccess.Data;
+﻿using AleeVan.DataAccess.Respository.IRespository;
 using AleeVan.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,16 +6,16 @@ namespace Alee_BulkyWeb.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ICategoryRepository _categoryRepo;
 
-        public CategoryController(ApplicationDbContext db)
+        public CategoryController(ICategoryRepository db)
         {
-            _db = db;
+            _categoryRepo = db;
         }
 
         public IActionResult Index()
         {
-            List<Category> objCategoryList = _db.Categories.ToList();
+            List<Category> objCategoryList = _categoryRepo.GetAll().ToList();
             return View(objCategoryList);
         }
 
@@ -33,8 +33,8 @@ namespace Alee_BulkyWeb.Controllers
             }
             if (ModelState.IsValid)
             {
-                _db.Categories.Add(obj);
-                _db.SaveChanges();
+                _categoryRepo.Add(obj);
+                _categoryRepo.Save();
 
                 TempData["success"] = "Category created succesfully!";
 
@@ -47,7 +47,7 @@ namespace Alee_BulkyWeb.Controllers
         {
             if (id == null || id == 0)
                 return NotFound();
-            Category? categoryFromDb = _db.Categories.Find(id);
+            Category? categoryFromDb = _categoryRepo.Get(u => u.Id == id);
             if (categoryFromDb == null)
                 return NotFound();
             return View(categoryFromDb);
@@ -58,8 +58,8 @@ namespace Alee_BulkyWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Categories.Update(obj);
-                _db.SaveChanges();
+                _categoryRepo.Update(obj);
+                _categoryRepo.Save();
 
                 TempData["success"] = "Category updated succesfully!";
 
@@ -72,7 +72,7 @@ namespace Alee_BulkyWeb.Controllers
         {
             if (id == null || id == 0)
                 return NotFound();
-            Category? categoryFromDb = _db.Categories.Find(id);
+            Category? categoryFromDb = _categoryRepo.Get(u => u.Id == id);
             if (categoryFromDb == null)
                 return NotFound();
             return View(categoryFromDb);
@@ -81,11 +81,11 @@ namespace Alee_BulkyWeb.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            Category? obj = _db.Categories.Find(id);
+            Category? obj = _categoryRepo.Get(u => u.Id == id);
             if (obj == null)
                 return NotFound();
-            _db.Remove(obj);
-            _db.SaveChanges();
+            _categoryRepo.Remove(obj);
+            _categoryRepo.Save();
 
             TempData["success"] = "Category deleted succesfully!";
 
