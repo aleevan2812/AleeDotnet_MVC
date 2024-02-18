@@ -2,8 +2,9 @@
 using AleeBook.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AleeBookWeb.Controllers
+namespace AleeBookWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
