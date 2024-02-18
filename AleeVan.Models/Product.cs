@@ -15,7 +15,7 @@ namespace AleeBook.Models
         public string Author { get; set; }
 
         [Required]
-        public int ISBN { get; set; }
+        public string ISBN { get; set; }
 
         [Required]
         [Display(Name = "List Price")]
