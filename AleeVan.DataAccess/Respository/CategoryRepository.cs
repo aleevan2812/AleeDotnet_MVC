@@ -13,11 +13,11 @@ namespace AleeBook.DataAccess.Respository
             _db = db;
         }
 
-        public void Save()
-        {
-            //throw new NotImplementedException();
-            _db.SaveChanges();
-        }
+        //public void Save()
+        //{
+        //    //throw new NotImplementedException();
+        //    _db.SaveChanges();
+        //}
 
         public void Update(Category obj)
         {
