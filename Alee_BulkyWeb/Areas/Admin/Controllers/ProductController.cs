@@ -132,11 +132,8 @@ namespace AleeBookWeb.Areas.Admin.Controllers
                 else
                     _unitOfWork.Product.Update(productVM.Product);
 
-                _unitOfWork.Product.Add(productVM.Product);
                 _unitOfWork.Save();
-
                 TempData["success"] = "Product created succesfully!";
-
                 return RedirectToAction("Index");
             }
             else
