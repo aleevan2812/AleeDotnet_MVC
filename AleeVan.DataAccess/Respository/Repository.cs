@@ -15,6 +15,7 @@ namespace AleeBook.DataAccess.Respository
             _db = db;
             dbSet = _db.Set<T>();
             // _db.Categories == dbSet
+            _db.Products.Include(u => u.Category).Include(u => u.CategoryId);
         }
 
         public void Add(T entity)
@@ -23,17 +24,22 @@ namespace AleeBook.DataAccess.Respository
             //throw new NotImplementedException();
         }
 
-        public T Get(Expression<Func<T, bool>> filter)
+        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
             query = query.Where(filter);
+            foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                query = query.Include(includeProp);
             return query.FirstOrDefault();
             //throw new NotImplementedException();
         }
 
-        public IEnumerable<T> GetAll()
+        // Category, CoverType
+        public IEnumerable<T> GetAll(string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
+            foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                query = query.Include(includeProp);
             return query.ToList();
             //throw new NotImplementedException();
         }
