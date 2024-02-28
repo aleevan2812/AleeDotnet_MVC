@@ -28,8 +28,11 @@ namespace AleeBook.DataAccess.Respository
         {
             IQueryable<T> query = dbSet;
             query = query.Where(filter);
-            foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                query = query.Include(includeProp);
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                    query = query.Include(includeProp);
+            }
             return query.FirstOrDefault();
             //throw new NotImplementedException();
         }
@@ -38,8 +41,11 @@ namespace AleeBook.DataAccess.Respository
         public IEnumerable<T> GetAll(string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
-            foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                query = query.Include(includeProp);
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                    query = query.Include(includeProp);
+            }
             return query.ToList();
             //throw new NotImplementedException();
         }
