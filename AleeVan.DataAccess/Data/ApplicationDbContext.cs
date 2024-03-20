@@ -12,6 +12,7 @@ namespace AleeBook.DataAccess.Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Company> Companies { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -109,6 +110,14 @@ namespace AleeBook.DataAccess.Data
                     CategoryId = 3,
                     ImageUrl = ""
                 }
+            );
+
+            modelBuilder.Entity<Company>().HasData(
+                new Company { Id = 1, Name = "Test 1", PhoneNumber = "0111111111" },
+                new Company { Id = 2, Name = "Test 2", PostalCode = "100000" },
+                new Company { Id = 3, Name = "Test 3", StreetAddress = "Ha Noi street" },
+                new Company { Id = 4, Name = "Test 4", City = "Ha Noi" }
+
             );
         }
     }

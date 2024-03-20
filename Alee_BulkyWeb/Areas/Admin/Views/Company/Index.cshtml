@@ -1,10 +1,10 @@
-﻿@model List<Product>
+﻿@model List<Company>
 
 <div class="card shadow border-0 mt-4">
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
         <div class="row">
             <div class="col-12 text-center">
-                <h2 class="text-white py-2">Product List</h2>
+                <h2 class="text-white py-2">Company List</h2>
             </div>
         </div>
 
@@ -15,8 +15,8 @@
                 
             </div>
             <div class="col-6 text-end">
-                <a asp-controller="Product" asp-action="Upsert" class="btn btn-primary">
-                    <i class="bi bi-plus-circle"></i>Create New Product
+                <a asp-controller="Company" asp-action="Upsert" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i>Create New Company
                 </a>
             </div>
         </div>
@@ -24,13 +24,13 @@
         <table id="tblData" class="table table-bordered table-striped" style="width:100%">
             <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>ISBN</th>
-                    <th>Price</th>
-                    <th>Author</th>
-                    <th>Category</th>
-                    <th class="text-center">Options</th>
-                    
+                    <th>Name</th>
+                    <th>Street address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Postal code</th>
+                    <th>Phone number</th>
+                    <th>Options</th>
                 </tr>
             </thead>
        
@@ -45,6 +45,6 @@
 </div> *@
 
 @section Scripts{
-    <script src="~/js/product.js"></script>
+    <script src="~/js/company.js"></script>
 }
 
