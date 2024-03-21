@@ -98,26 +98,32 @@ namespace AleeBook.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Test 1",
-                            PhoneNumber = "0111111111"
+                            City = "Tech City",
+                            Name = "Tech Solution",
+                            PhoneNumber = "0111111111",
+                            PostalCode = "12121",
+                            State = "TL",
+                            StreetAddress = "123 Tech St"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Test 2",
-                            PostalCode = "100000"
+                            City = "Vid City",
+                            Name = "Vivid Book",
+                            PhoneNumber = "15671414",
+                            PostalCode = "12121",
+                            State = "TL",
+                            StreetAddress = "999 Vid St"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Test 3",
-                            StreetAddress = "Ha Noi street"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            City = "Ha Noi",
-                            Name = "Test 4"
+                            City = "lala City",
+                            Name = "Readers Club",
+                            PhoneNumber = "111234421415",
+                            PostalCode = "12121",
+                            State = "TL",
+                            StreetAddress = "999 Main St"
                         });
                 });
 
@@ -471,6 +477,9 @@ namespace AleeBook.DataAccess.Migrations
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("CompanyId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -483,6 +492,8 @@ namespace AleeBook.DataAccess.Migrations
 
                     b.Property<string>("StreetAddress")
                         .HasColumnType("nvarchar(max)");
+
+                    b.HasIndex("CompanyId");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
@@ -547,6 +558,15 @@ namespace AleeBook.DataAccess.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("AleeBook.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("AleeBook.Models.Company", "Company")
+                        .WithMany()
+                        .HasForeignKey("CompanyId");
+
+                    b.Navigation("Company");
                 });
 #pragma warning restore 612, 618
         }

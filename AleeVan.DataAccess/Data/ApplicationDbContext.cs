@@ -25,6 +25,12 @@ namespace AleeBook.DataAccess.Data
 
             );
 
+            modelBuilder.Entity<Company>().HasData(
+                new Company() { Id = 1, Name = "Tech Solution", StreetAddress = "123 Tech St", City = "Tech City", PostalCode = "12121", State = "TL", PhoneNumber = "0111111111" },
+                new Company() { Id = 2, Name = "Vivid Book", StreetAddress = "999 Vid St", City = "Vid City", PostalCode = "12121", State = "TL", PhoneNumber = "15671414" },
+                new Company() { Id = 3, Name = "Readers Club", StreetAddress = "999 Main St", City = "lala City", PostalCode = "12121", State = "TL", PhoneNumber = "111234421415" }
+            );
+
             modelBuilder.Entity<Product>().HasData(
                 new Product
                 {
@@ -110,14 +116,6 @@ namespace AleeBook.DataAccess.Data
                     CategoryId = 3,
                     ImageUrl = ""
                 }
-            );
-
-            modelBuilder.Entity<Company>().HasData(
-                new Company { Id = 1, Name = "Test 1", PhoneNumber = "0111111111" },
-                new Company { Id = 2, Name = "Test 2", PostalCode = "100000" },
-                new Company { Id = 3, Name = "Test 3", StreetAddress = "Ha Noi street" },
-                new Company { Id = 4, Name = "Test 4", City = "Ha Noi" }
-
             );
         }
     }
