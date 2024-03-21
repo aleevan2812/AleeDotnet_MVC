@@ -1,19 +1,19 @@
 ﻿using AleeBook.DataAccess.Data;
-using AleeBook.DataAccess.Respository.IRespository;
+using AleeBook.DataAccess.Repository.IRepository;
 using AleeBook.Models;
 
 namespace AleeBook.DataAccess.Respository
 {
-    public class CompanyRepository : Repository<Company>, ICompanyRepository
+    public class ShoppingCartRepository : Repository<ShoppingCart>, IShoppingCartRepository
     {
         private ApplicationDbContext _db;
 
-        public CompanyRepository(ApplicationDbContext db) : base(db)
+        public ShoppingCartRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public void Update(Company obj)
+        public void Update(ShoppingCart obj)
         {
             //throw new NotImplementedException();
             _db.Update(obj);

@@ -1,8 +1,8 @@
 ﻿using System.Linq.Expressions;
 
-namespace AleeBook.DataAccess.Respository.IRespository
+namespace AleeBook.DataAccess.Repository.IRepository
 {
-    public interface IRespository<T> where T : class
+    public interface IRepository<T> where T : class
     {
         // T - Category
         IEnumerable<T> GetAll(string? includeProperties = null);

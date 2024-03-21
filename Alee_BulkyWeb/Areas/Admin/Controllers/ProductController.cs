@@ -1,4 +1,4 @@
-﻿using AleeBook.DataAccess.Respository.IRespository;
+﻿using AleeBook.DataAccess.Repository.IRepository;
 using AleeBook.Models;
 using AleeBook.Models.ViewModels;
 using AleeBook.Utility;

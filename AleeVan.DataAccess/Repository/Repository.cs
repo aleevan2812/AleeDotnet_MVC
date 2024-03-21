@@ -1,11 +1,11 @@
 ﻿using AleeBook.DataAccess.Data;
-using AleeBook.DataAccess.Respository.IRespository;
+using AleeBook.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace AleeBook.DataAccess.Respository
 {
-    public class Repository<T> : IRespository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
         private readonly ApplicationDbContext _db;
         internal DbSet<T> dbSet;

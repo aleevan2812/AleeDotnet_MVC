@@ -1,8 +1,9 @@
 ﻿using AleeBook.DataAccess.Data;
-using AleeBook.DataAccess.Respository.IRespository;
+using AleeBook.DataAccess.Repository.IRepository;
+using AleeBook.DataAccess.Respository;
 using AleeBook.Models;
 
-namespace AleeBook.DataAccess.Respository
+namespace AleeBook.DataAccess.Repository
 {
     public class CategoryRepository : Repository<Category>, ICategoryRepository
     {

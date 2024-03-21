@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using AleeBook.DataAccess.Respository.IRespository;
+using AleeBook.DataAccess.Repository.IRepository;
 using AleeBook.Models;
 using AleeBook.Utility;
 using Microsoft.AspNetCore.Authentication;

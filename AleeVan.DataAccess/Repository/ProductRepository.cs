@@ -1,5 +1,5 @@
 ﻿using AleeBook.DataAccess.Data;
-using AleeBook.DataAccess.Respository.IRespository;
+using AleeBook.DataAccess.Repository.IRepository;
 using AleeBook.Models;
 
 namespace AleeBook.DataAccess.Respository

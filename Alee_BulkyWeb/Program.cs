@@ -1,6 +1,6 @@
 using AleeBook.DataAccess.Data;
+using AleeBook.DataAccess.Repository.IRepository;
 using AleeBook.DataAccess.Respository;
-using AleeBook.DataAccess.Respository.IRespository;
 using AleeBook.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
