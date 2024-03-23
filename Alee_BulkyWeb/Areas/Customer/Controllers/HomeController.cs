@@ -46,7 +46,7 @@ namespace AleeBookWeb.Areas.Customer.Controllers
             var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
             shoppingCart.ApplicationUserId = userId;
 
-            ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ApplicationUserId == userId && u.ProductId == shoppingCart.ProductId);
+            ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.Get((u => u.ApplicationUserId == userId && u.ProductId == shoppingCart.ProductId));
 
             if (cartFromDb != null)
             {
@@ -61,6 +61,7 @@ namespace AleeBookWeb.Areas.Customer.Controllers
             }
 
             //_unitOfWork.ShoppingCart.Add(shoppingCart);
+            TempData["success"] = "Cart updated successfully";
             _unitOfWork.Save();
 
             //return View();
