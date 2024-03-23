@@ -44,6 +44,7 @@ namespace AleeBookWeb.Areas.Customer.Controllers
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            // noi luu tru userId
             shoppingCart.ApplicationUserId = userId;
 
             ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.Get((u => u.ApplicationUserId == userId && u.ProductId == shoppingCart.ProductId));
