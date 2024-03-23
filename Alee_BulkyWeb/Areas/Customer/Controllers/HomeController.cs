@@ -1,7 +1,9 @@
 using AleeBook.DataAccess.Repository.IRepository;
 using AleeBook.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace AleeBookWeb.Areas.Customer.Controllers
 {
@@ -34,6 +36,21 @@ namespace AleeBookWeb.Areas.Customer.Controllers
             };
 
             return View(cart);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Details(ShoppingCart shoppingCart)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            shoppingCart.ApplicationUserId = userId;
+
+            _unitOfWork.ShoppingCart.Add(shoppingCart);
+            _unitOfWork.Save();
+
+            //return View();
+            return RedirectToAction(nameof(Index)); // = "Index"
         }
 
         public IActionResult Privacy()
