@@ -30,8 +30,7 @@ public class CartController : Controller
 
         ShoppingCartVM = new ShoppingCartVM
         {
-            ShoppingCartList =
-                _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId, "Product"),
+            ShoppingCartList = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId, "Product"),
             OrderHeader = new OrderHeader()
         };
 
@@ -89,7 +88,8 @@ public class CartController : Controller
         ShoppingCartVM.OrderHeader.OrderDate = DateTime.Now;
         ShoppingCartVM.OrderHeader.ApplicationUserId = userId;
 
-        ShoppingCartVM.OrderHeader.ApplicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == userId);
+        // ShoppingCartVM.OrderHeader.ApplicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == userId);
+        ApplicationUser applicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == userId);
 
 
         foreach (var cart in ShoppingCartVM.ShoppingCartList)
@@ -98,9 +98,9 @@ public class CartController : Controller
             ShoppingCartVM.OrderHeader.OrderTotal += cart.Price * cart.Count;
         }
 
-        if (ShoppingCartVM.OrderHeader.ApplicationUser.CompanyId.GetValueOrDefault() == 0)
+        if (applicationUser.CompanyId.GetValueOrDefault() == 0)
         {
-            // it is a regular customer account and we need to capture payment
+            // it is a regular customer account 
             ShoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusPending;
             ShoppingCartVM.OrderHeader.OrderStatus = SD.StatusPending;
         }
@@ -126,10 +126,24 @@ public class CartController : Controller
             _unitOfWork.OrderDetail.Add(orderDetail);
             _unitOfWork.Save();
         }
+        
+        if (applicationUser.CompanyId.GetValueOrDefault() == 0)
+        {
+            // it is a regular customer account and we need to capture payment
+            // stripe logic
+            
+        }
+        
 
-        return View(ShoppingCartVM);
+        // return View(ShoppingCartVM);
+        return RedirectToAction(nameof(OrderConfirmation), new { id = ShoppingCartVM.OrderHeader.Id });
     }
 
+    public IActionResult OrderConfirmation(int id)
+    {
+        return View(id);
+    }
+    
     public IActionResult Plus(int cartId)
     {
         var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.Id == cartId);
