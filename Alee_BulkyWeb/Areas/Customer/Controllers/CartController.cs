@@ -5,6 +5,7 @@ using AleeBook.Models.ViewModels;
 using AleeBook.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Stripe.Checkout;
 
 namespace AleeBookWeb.Areas.Customer.Controllers;
 
@@ -89,7 +90,7 @@ public class CartController : Controller
         ShoppingCartVM.OrderHeader.ApplicationUserId = userId;
 
         // ShoppingCartVM.OrderHeader.ApplicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == userId);
-        ApplicationUser applicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == userId);
+        var applicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == userId);
 
 
         foreach (var cart in ShoppingCartVM.ShoppingCartList)
@@ -126,14 +127,46 @@ public class CartController : Controller
             _unitOfWork.OrderDetail.Add(orderDetail);
             _unitOfWork.Save();
         }
-        
+
         if (applicationUser.CompanyId.GetValueOrDefault() == 0)
         {
             // it is a regular customer account and we need to capture payment
             // stripe logic
-            
+            var domain = "https://localhost:44375/";
+            var options = new SessionCreateOptions
+            {
+                SuccessUrl = domain + $"/customer/cart/OrderConfirmation?id={ShoppingCartVM.OrderHeader.Id}",
+                LineItems = new List<SessionLineItemOptions>(),
+                Mode = "payment",
+            };
+
+            foreach (var item in ShoppingCartVM.ShoppingCartList)
+            {
+                var sesstionLineItem = new SessionLineItemOptions
+                {
+                    PriceData = new SessionLineItemPriceDataOptions
+                    {
+                        UnitAmount = (long)(item.Price * 100), // $20.50 -> 2050
+                        Currency = "usd",
+                        ProductData = new SessionLineItemPriceDataProductDataOptions
+                        {
+                            Name = item.Product.Title
+                        }
+                    },
+                    Quantity = item.Count
+                };
+                options.LineItems.Add(sesstionLineItem);
+            }
+
+            var service = new SessionService();
+            Session session = service.Create(options);
+            _unitOfWork.OrderHeader.UpdateStripePaymentID(ShoppingCartVM.OrderHeader.Id, session.Id,
+                session.PaymentIntentId);
+            _unitOfWork.Save();
+            Response.Headers.Add("Location", session.Url);
+            return new StatusCodeResult(303);
         }
-        
+
 
         // return View(ShoppingCartVM);
         return RedirectToAction(nameof(OrderConfirmation), new { id = ShoppingCartVM.OrderHeader.Id });
@@ -143,7 +176,7 @@ public class CartController : Controller
     {
         return View(id);
     }
-    
+
     public IActionResult Plus(int cartId)
     {
         var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.Id == cartId);
