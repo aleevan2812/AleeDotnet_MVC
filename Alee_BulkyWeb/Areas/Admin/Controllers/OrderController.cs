@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AleeBookWeb.Areas.Admin.Controllers;
 
+[Area("admin")]
 public class OrderController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
