@@ -2,7 +2,7 @@
 $(document).ready(function () {
     loadDataTable();
 });
-
+  
 // DataTables.net
 function loadDataTable() {
     dataTable = $('#tblData').DataTable({
