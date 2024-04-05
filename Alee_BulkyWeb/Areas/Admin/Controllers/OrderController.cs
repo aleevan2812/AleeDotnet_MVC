@@ -1,4 +1,6 @@
 using AleeBook.DataAccess.Repository.IRepository;
+using AleeBook.Models;
+using AleeBook.Utility;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AleeBookWeb.Areas.Admin.Controllers;
@@ -21,9 +23,27 @@ public class OrderController : Controller
     #region API CALLS
 
     [HttpGet]
-    public IActionResult GetAll()
+    public IActionResult GetAll(string status)
     {
-        var objOrderHeaders = _unitOfWork.OrderHeader.GetAll(includeProperties: "ApplicationUser").ToList();
+        IEnumerable<OrderHeader> objOrderHeaders =
+            _unitOfWork.OrderHeader.GetAll(includeProperties: "ApplicationUser").ToList();
+
+        switch (status)
+        {
+            case "pending":
+                objOrderHeaders = objOrderHeaders.Where(u => u.PaymentStatus == SD.PaymentStatusDelayedPayment);
+                break;
+            case "inprocess":
+                objOrderHeaders = objOrderHeaders.Where(u => u.OrderStatus == SD.StatusInProcess);
+                break;
+            case "completed":
+                objOrderHeaders = objOrderHeaders.Where(u => u.OrderStatus == SD.StatusShipped);
+                break;
+            case "approved":
+                objOrderHeaders = objOrderHeaders.Where(u => u.OrderStatus == SD.StatusApproved);
+                break;
+        }
+
         return Json(new { data = objOrderHeaders });
     }
 
