@@ -178,7 +178,7 @@ public class CartController : Controller
         {
             // this is an order by customer
             var service = new SessionService();
-            var session = service.Get(orderHeader.SesstionId);
+            var session = service.Get(orderHeader.SessionId);
 
             if (session.PaymentStatus.ToLower() == "paid")
             {
