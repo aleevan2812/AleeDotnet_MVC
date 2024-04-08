@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using AleeBook.DataAccess.Repository.IRepository;
 using AleeBook.Models;
 using AleeBook.Models.ViewModels;
@@ -65,8 +66,19 @@ public class OrderController : Controller
     [HttpGet]
     public IActionResult GetAll(string status)
     {
-        IEnumerable<OrderHeader> objOrderHeaders =
-            _unitOfWork.OrderHeader.GetAll(includeProperties: "ApplicationUser").ToList();
+        IEnumerable<OrderHeader> objOrderHeaders;
+        
+        if(User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
+            objOrderHeaders = _unitOfWork.OrderHeader.GetAll(includeProperties: "ApplicationUser").ToList();
+        else
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            // noi luu tru userId
+
+            objOrderHeaders = _unitOfWork.OrderHeader.GetAll(u => u.ApplicationUserId == userId,
+                includeProperties: "ApplicationUser");
+        }
 
         switch (status)
         {
