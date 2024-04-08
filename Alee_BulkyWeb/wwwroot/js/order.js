@@ -2,30 +2,30 @@
 $(document).ready(function () {
     var url = window.location.search;
 
-    // for (const statusKey in ["inprocess", "completed", "pending", "approved", "all"]) {
-    //     if (url.includes(statusKey)) {
-    //         loadDataTable(statusKey);
-    //     }
-    // }
-
-    console.log(url);
-
-    if (url.includes("inprocess"))
-        loadDataTable("inprocess");
-    else {
-        if (url.includes("completed")) {
-            loadDataTable("completed");
-            console.log(url);
-        } else {
-            if (url.includes("pending"))
-                loadDataTable("pending");
-            else {
-                if (url.includes("approved"))
-                    loadDataTable("approved");
-                else loadDataTable("all");
-            }
+    for (const statusKey of ["inprocess", "completed", "pending", "approved", "all"]) {
+        if (url.includes(statusKey)) {
+            loadDataTable(statusKey);
         }
     }
+
+    // console.log(url);
+    //
+    // if (url.includes("inprocess"))
+    //     loadDataTable("inprocess");
+    // else {
+    //     if (url.includes("completed")) {
+    //         loadDataTable("completed");
+    //         console.log(url);
+    //     } else {
+    //         if (url.includes("pending"))
+    //             loadDataTable("pending");
+    //         else {
+    //             if (url.includes("approved"))
+    //                 loadDataTable("approved");
+    //             else loadDataTable("all");
+    //         }
+    //     }
+    // }
 
 });
 

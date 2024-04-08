@@ -1,5 +1,6 @@
 using AleeBook.DataAccess.Repository.IRepository;
 using AleeBook.Models;
+using AleeBook.Models.ViewModels;
 using AleeBook.Utility;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,16 @@ public class OrderController : Controller
     public IActionResult Index()
     {
         return View();
+    }
+    
+    public IActionResult Details(int orderId)
+    {
+        OrderVM orderVM = new()
+        {
+            OrderHeader = _unitOfWork.OrderHeader.Get(u => u.Id == orderId, includeProperties: "ApplicationUser"),
+            OrderDetail = _unitOfWork.OrderDetail.GetAll(u => u.OrderHeaderId == orderId, includeProperties: "Product")
+        };
+        return View(orderVM);
     }
 
     #region API CALLS
