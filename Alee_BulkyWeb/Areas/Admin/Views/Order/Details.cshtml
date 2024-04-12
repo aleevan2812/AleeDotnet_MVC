@@ -268,7 +268,7 @@
 
                                 @if (!new List<string> { SD.StatusRefunded, SD.StatusCancelled, SD.StatusShipped }.Contains(Model.OrderHeader.OrderStatus))
                                 {
-                                    <button type="submit" class="btn btn-danger form-control my-1">Cancel Order</button>
+                                    <button type="submit" asp-action="CancelOrder" class="btn btn-danger form-control my-1">Cancel Order</button>
                                 }
                             }
 
