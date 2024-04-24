@@ -24,12 +24,12 @@ public class ShoppingCartViewComponent : ViewComponent
             if (HttpContext.Session.GetInt32(SD.SessionCart) == null)
                 HttpContext.Session.SetInt32(SD.SessionCart,
                     _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value).Count());
-            return View(HttpContext.Session.GetInt32(SD.SessionCart));
+            return View((int)HttpContext.Session.GetInt32(SD.SessionCart));
         }
         else
         {
             HttpContext.Session.Clear();
-            return View();
+            return View(0);
         }
     }
 }
