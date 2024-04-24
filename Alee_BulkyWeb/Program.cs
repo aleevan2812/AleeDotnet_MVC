@@ -25,6 +25,14 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
 });
 
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(100);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 builder.Services.AddRazorPages(); // hey my Prj uses razor page
 //builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -49,6 +57,7 @@ app.UseRouting();
 app.UseAuthentication(); // checking username or password is valid
 // check role of a user, first authentication -> authorization
 app.UseAuthorization();
+app.UseSession();
 app.MapRazorPages(); // need to map the razor pages
 
 app.MapControllerRoute(

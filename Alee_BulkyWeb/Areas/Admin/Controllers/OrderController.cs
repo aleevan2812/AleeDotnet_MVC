@@ -11,7 +11,7 @@ using Stripe.Checkout;
 
 namespace AleeBookWeb.Areas.Admin.Controllers;
 
-[Area("admin")]
+[Area("Admin")]
 [Authorize]
 public class OrderController : Controller
 {
