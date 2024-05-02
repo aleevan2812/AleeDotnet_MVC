@@ -54,12 +54,14 @@ public class DbInitializer : IDbInitializer
                 StreetAddress = "Test street",
                 State = "Test state",
                 PostalCode = "100000",
-                City = "Ha Noi"
+                City = "Ha Noi",
             }, "Alee123.").GetAwaiter().GetResult();
 
 
-            var user = _db.ApplicationUsers.FirstOrDefault(u => u.Email == "admin@dotnetmastery.com");
+            var user = _db.ApplicationUsers.FirstOrDefault(u => u.Email == "admin@gmail.com");
             _userManager.AddToRoleAsync(user, SD.Role_Admin).GetAwaiter().GetResult();
         }
+
+        return;
     }
 }
