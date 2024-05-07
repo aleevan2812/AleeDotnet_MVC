@@ -28,6 +28,12 @@ public class UserController : Controller
     public IActionResult GetAll()
     {
         var objUserList = _db.ApplicationUsers.Include(u => u.Company).ToList();
+
+        foreach (var user in objUserList)
+        {
+            if (user.Company == null)
+                user.Company = new() { Name = "" };
+        }
         return Json(new { data = objUserList });
     }
 
