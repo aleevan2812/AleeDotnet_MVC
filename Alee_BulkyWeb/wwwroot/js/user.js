@@ -13,7 +13,7 @@ function loadDataTable() {
             {data: 'email', "width": "15%"},
             {data: 'phoneNumber', "width": "15%"},
             {data: 'company.name', "width": "15%"},
-            {data: '', "width": "10%"},
+            {data: 'role', "width": "10%"},
 
             {
                 data: 'id',
