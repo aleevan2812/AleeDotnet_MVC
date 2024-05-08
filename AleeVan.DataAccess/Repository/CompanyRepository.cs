@@ -2,21 +2,20 @@
 using AleeBook.DataAccess.Repository.IRepository;
 using AleeBook.Models;
 
-namespace AleeBook.DataAccess.Respository
+namespace AleeBook.DataAccess.Repository;
+
+public class CompanyRepository : Repository<Company>, ICompanyRepository
 {
-    public class CompanyRepository : Repository<Company>, ICompanyRepository
+    private readonly ApplicationDbContext _db;
+
+    public CompanyRepository(ApplicationDbContext db) : base(db)
     {
-        private ApplicationDbContext _db;
+        _db = db;
+    }
 
-        public CompanyRepository(ApplicationDbContext db) : base(db)
-        {
-            _db = db;
-        }
-
-        public void Update(Company obj)
-        {
-            //throw new NotImplementedException();
-            _db.Update(obj);
-        }
+    public void Update(Company obj)
+    {
+        //throw new NotImplementedException();
+        _db.Update(obj);
     }
 }

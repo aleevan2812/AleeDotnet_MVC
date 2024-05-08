@@ -1,74 +1,69 @@
-﻿using AleeBook.DataAccess.Data;
+﻿using System.Linq.Expressions;
+using AleeBook.DataAccess.Data;
 using AleeBook.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 
-namespace AleeBook.DataAccess.Respository
+namespace AleeBook.DataAccess.Repository;
+
+public class Repository<T> : IRepository<T> where T : class
 {
-    public class Repository<T> : IRepository<T> where T : class
+    private readonly ApplicationDbContext _db;
+    internal DbSet<T> dbSet;
+
+    public Repository(ApplicationDbContext db)
     {
-        private readonly ApplicationDbContext _db;
-        internal DbSet<T> dbSet;
+        _db = db;
+        dbSet = _db.Set<T>();
+        // _db.Categories == dbSet
+        _db.Products.Include(u => u.Category).Include(u => u.CategoryId);
+    }
 
-        public Repository(ApplicationDbContext db)
-        {
-            _db = db;
-            dbSet = _db.Set<T>();
-            // _db.Categories == dbSet
-            _db.Products.Include(u => u.Category).Include(u => u.CategoryId);
-        }
+    public void Add(T entity)
+    {
+        dbSet.Add(entity);
+        //throw new NotImplementedException();
+    }
 
-        public void Add(T entity)
-        {
-            dbSet.Add(entity);
-            //throw new NotImplementedException();
-        }
+    public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false)
+    {
+        IQueryable<T> query;
+        if (tracked)
+            query = dbSet;
+        else
+            query = dbSet.AsNoTracking();
 
-        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false)
-        {
-            IQueryable<T> query;
-            if (tracked)
-                query = dbSet;
-            else
-                query = dbSet.AsNoTracking();
+        query = query.Where(filter);
+        if (!string.IsNullOrEmpty(includeProperties))
+            foreach (var includeProp in includeProperties.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                query = query.Include(includeProp);
+        return query.FirstOrDefault();
+        //throw new NotImplementedException();
+    }
 
+    // Category, CoverType
+    public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
+    {
+        IQueryable<T> query = dbSet;
+        if (filter != null)
             query = query.Where(filter);
-            if (!string.IsNullOrEmpty(includeProperties))
-            {
-                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                    query = query.Include(includeProp);
-            }
-            return query.FirstOrDefault();
-            //throw new NotImplementedException();
-        }
 
-        // Category, CoverType
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
-        {
-            IQueryable<T> query = dbSet;
-            if (filter != null)
-                query = query.Where(filter);
+        if (!string.IsNullOrEmpty(includeProperties))
+            foreach (var includeProp in includeProperties.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                query = query.Include(includeProp);
+        return query.ToList();
+        //throw new NotImplementedException();
+    }
 
-            if (!string.IsNullOrEmpty(includeProperties))
-            {
-                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                    query = query.Include(includeProp);
-            }
-            return query.ToList();
-            //throw new NotImplementedException();
-        }
+    public void Remove(T entity)
+    {
+        dbSet.Remove(entity);
+        //throw new NotImplementedException();
+    }
 
-        public void Remove(T entity)
-        {
-            dbSet.Remove(entity);
-            //throw new NotImplementedException();
-        }
+    public void RemoveRange(IEnumerable<T> entity)
+    {
+        dbSet.RemoveRange(entity);
 
-        public void RemoveRange(IEnumerable<T> entity)
-        {
-            dbSet.RemoveRange(entity);
-
-            //throw new NotImplementedException();
-        }
+        //throw new NotImplementedException();
     }
 }

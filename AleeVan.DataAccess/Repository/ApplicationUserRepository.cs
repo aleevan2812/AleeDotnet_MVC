@@ -1,23 +1,21 @@
 ﻿using AleeBook.DataAccess.Data;
 using AleeBook.DataAccess.Repository.IRepository;
-using AleeBook.DataAccess.Respository;
 using AleeBook.Models;
 
-namespace AleeBook.DataAccess.Repository
+namespace AleeBook.DataAccess.Repository;
+
+public class ApplicationUserRepository : Repository<ApplicationUser>, IApplicationUserRepository
 {
-    public class ApplicationUserRepository : Repository<ApplicationUser>, IApplicationUserRepository
+    private ApplicationDbContext _db;
+
+    public ApplicationUserRepository(ApplicationDbContext db) : base(db)
     {
-        private ApplicationDbContext _db;
-
-        public ApplicationUserRepository(ApplicationDbContext db) : base(db)
-        {
-            _db = db;
-        }
-
-        //public void Save()
-        //{
-        //    //throw new NotImplementedException();
-        //    _db.SaveChanges();
-        //}
+        _db = db;
     }
+
+    //public void Save()
+    //{
+    //    //throw new NotImplementedException();
+    //    _db.SaveChanges();
+    //}
 }
