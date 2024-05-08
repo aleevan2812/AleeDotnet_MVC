@@ -64,5 +64,5 @@ public class UserController : Controller
         return Json(new { success = true, message = "Operation Successful" });
     }
 
-    #endregion API CALLS
+    #endregion 
 }
