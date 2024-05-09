@@ -67,7 +67,7 @@ public class ProductController : Controller
             return View(productVM);
 
         // Update
-        productVM.Product = _unitOfWork.Product.Get(u => u.Id == id);
+        productVM.Product = _unitOfWork.Product.Get(u => u.Id == id, includeProperties:"ProductImages");
         return View(productVM);
     }
 
