@@ -31,7 +31,7 @@ public class HomeController : Controller
     {
         var cart = new ShoppingCart
         {
-            Product = _unitOfWork.Product.Get(u => u.Id == productId, "Category"),
+            Product = _unitOfWork.Product.Get(u => u.Id == productId, includeProperties: "Category,ProductImages"),
             Count = 1,
             ProductId = productId
         };
