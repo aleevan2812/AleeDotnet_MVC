@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css"/>
+    
 </head>
 <body>
 <header>
@@ -65,6 +66,7 @@
                         </li>
                     }
 
+
                     @* @if (HttpContextAccessor.HttpContext.Session.GetInt32((SD.SessionCart) )!= null) *@
                     @* { *@
                     @*     <li class="nav-item"> *@
@@ -104,9 +106,11 @@
     </main>
 </div>
 
-<footer class="border-top footer bg-primary text-muted">
-    <div class="text-center">
-        Made with <i class="bi bi-heart-fill"></i> by AleeBook
+<footer class="bg-primary" style="position: fixed; bottom: 0; width: 100%;">
+    <div class="text-center" style="height: 28px;">
+        <a href="https://github.com/aleevan2812/AleeDotnet_MVC" target="_blank" class="badge badge-primary">Github Source</a>
+        <a href="https://github.com/aleevan2812/MyCV" target="_blank" class="badge badge-danger">My CV</a>
+
     </div>
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>

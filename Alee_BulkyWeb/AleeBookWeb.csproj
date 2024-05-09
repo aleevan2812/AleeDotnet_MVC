@@ -12,6 +12,7 @@
 
     <ItemGroup>
         <_ContentIncludedByDefault Remove="wwwroot\js\product.js"/>
+        <_ContentIncludedByDefault Remove="wwwroot\file\LeVanAn_Intern_dotNet_2.pdf" />
     </ItemGroup>
 
     <ItemGroup>
