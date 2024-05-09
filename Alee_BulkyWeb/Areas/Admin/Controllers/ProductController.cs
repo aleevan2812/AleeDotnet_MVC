@@ -120,7 +120,7 @@ public class ProductController : Controller
                     if (!Directory.Exists(finalPath))
                         Directory.CreateDirectory(finalPath);
 
-                    using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
+                    using (var fileStream = new FileStream(Path.Combine(finalPath, fileName), FileMode.Create))
                     {
                         file.CopyTo(fileStream);
                     }
