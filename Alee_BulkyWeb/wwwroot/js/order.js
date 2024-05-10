@@ -5,7 +5,7 @@ $(document).ready(function () {
     for (const statusKey of ["inprocess", "completed", "pending", "approved", "all"]) {
         if (url.includes(statusKey)) {
             loadDataTable(statusKey);
-        }
+        } 
     }
 
     // console.log(url);

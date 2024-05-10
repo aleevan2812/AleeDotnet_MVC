@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using Stripe;
 using Stripe.Checkout;
 
-
 namespace AleeBookWeb.Areas.Admin.Controllers;
 
 [Area("Admin")]
@@ -131,17 +130,17 @@ public class OrderController : Controller
     public IActionResult Details_PAY_NOW()
     {
         OrderVM.OrderHeader =
-            _unitOfWork.OrderHeader.Get(u => u.Id == OrderVM.OrderHeader.Id, includeProperties: "ApplicationUser");
+            _unitOfWork.OrderHeader.Get(u => u.Id == OrderVM.OrderHeader.Id, "ApplicationUser");
         OrderVM.OrderDetail =
-            _unitOfWork.OrderDetail.GetAll(u => u.OrderHeaderId == OrderVM.OrderHeader.Id, includeProperties: "Product");
-        
+            _unitOfWork.OrderDetail.GetAll(u => u.OrderHeaderId == OrderVM.OrderHeader.Id, "Product");
+
         // stripe logic
         var domain = "https://localhost:44375/";
         // var domain = "https://localhost:7002/";
         var options = new SessionCreateOptions
         {
             SuccessUrl = domain + $"admin/order/PaymentConfirmation?orderHeaderId={OrderVM.OrderHeader.Id}",
-            CancelUrl = domain+ $"admin/order/details?orderId={OrderVM.OrderHeader.Id}",
+            CancelUrl = domain + $"admin/order/details?orderId={OrderVM.OrderHeader.Id}",
             LineItems = new List<SessionLineItemOptions>(),
             Mode = "payment"
         };
@@ -171,10 +170,8 @@ public class OrderController : Controller
         _unitOfWork.Save();
         Response.Headers.Add("Location", session.Url);
         return new StatusCodeResult(303);
-        
-        
     }
-    
+
     public IActionResult PaymentConfirmation(int orderHeaderId)
     {
         var orderHeader = _unitOfWork.OrderHeader.Get(u => u.Id == orderHeaderId);
@@ -192,7 +189,7 @@ public class OrderController : Controller
             }
         }
 
-        
+
         return View(orderHeaderId);
     }
 
@@ -201,6 +198,7 @@ public class OrderController : Controller
     [HttpGet]
     public IActionResult GetAll(string status)
     {
+        status = "all";
         IEnumerable<OrderHeader> objOrderHeaders;
 
         if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
