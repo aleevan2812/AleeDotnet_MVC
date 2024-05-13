@@ -5,10 +5,12 @@ $(document).ready(function () {
     for (const statusKey of ["inprocess", "completed", "pending", "approved", "all"]) {
         if (url.includes(statusKey)) {
             loadDataTable(statusKey);
+            return;
         } 
     }
-
-    // console.log(url);
+    loadDataTable("all");
+    
+    console.log(url);
     //
     // if (url.includes("inprocess"))
     //     loadDataTable("inprocess");
@@ -26,11 +28,10 @@ $(document).ready(function () {
     //         }
     //     }
     // }
-
 });
 
 // DataTables.net
-function loadDataTable(status) {
+function loadDataTable(status = "all") {
     dataTable = $('#tblData').DataTable({
         "ajax": {url: '/admin/order/getall?status=' + status},
         "columns": [
@@ -44,16 +45,17 @@ function loadDataTable(status) {
                 data: 'id',
                 "render": function (data) {
                     return `<div class="w-75 btn-group" role="group">
-                            <a href="/admin/order/details?orderId=${data}" class="btn btn-primary mx-2">
-                                <i class="bi bi-pencil-square"></i>
-                            </a>
-                             
-                        </div>`;
+                             <a href="/admin/order/details?orderId=${data}" class="btn btn-primary mx-2">
+                                 <i class="bi bi-pencil-square"></i>
+                             </a>
+
+                         </div>`;
                 },
                 "width": "10%"
             }
 
         ]
     });
-}
 
+    dataTable.destroy();
+}

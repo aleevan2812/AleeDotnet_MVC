@@ -3,7 +3,7 @@ $(document).ready(function () {
     loadDataTable();
 });
 
-// DataTables.net
+DataTables.net
 function loadDataTable() {
     dataTable = $('#tblData').DataTable({
         "ajax": { url: '/admin/product/getall' },
@@ -32,7 +32,7 @@ function loadDataTable() {
     });
 }
 
-// Swal
+Swal
 function Delete(url) {
     Swal.fire({
         title: "Are you sure?",

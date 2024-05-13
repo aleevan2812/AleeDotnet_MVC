@@ -34,7 +34,7 @@ public class Repository<T> : IRepository<T> where T : class
 
         query = query.Where(filter);
         if (!string.IsNullOrEmpty(includeProperties))
-            foreach (var includeProp in includeProperties.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            foreach (var includeProp in includeProperties.Replace(" ", "").Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 query = query.Include(includeProp);
         return query.FirstOrDefault();
         //throw new NotImplementedException();

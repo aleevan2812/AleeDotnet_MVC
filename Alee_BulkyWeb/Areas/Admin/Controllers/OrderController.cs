@@ -198,7 +198,6 @@ public class OrderController : Controller
     [HttpGet]
     public IActionResult GetAll(string status)
     {
-        status = "all";
         IEnumerable<OrderHeader> objOrderHeaders;
 
         if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
