@@ -135,7 +135,7 @@ public class CartController : Controller
 			// it is a regular customer account and we need to capture payment
 			// stripe logic
 			var domain = "https://alee-bookmvc.azurewebsites.net/";
-			// var domain = "https://alee-bookmvc.azurewebsites.net/";
+			// var domain = "https://aleebookmvc.azurewebsites.net/";
 			var options = new SessionCreateOptions
 			{
 				SuccessUrl = domain + $"customer/cart/OrderConfirmation?id={ShoppingCartVM.OrderHeader.Id}",
